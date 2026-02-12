@@ -7,18 +7,62 @@ import { StarsBackground } from "./ui/stars-background";
 import { Pill } from "./pill";
 import { Button } from "./ui/button";
 import { useState } from "react";
+import { useParallax } from "./hooks/use-parallax";
 
 const SPLINE_SCENE_URL =
   "https://prod.spline.design/nkEUK7XZrV2vgMPq/scene.splinecode";
 
 export function Hero() {
   const [hovering, setHovering] = useState(false);
+  const { ref: parallaxRef, offset: parallaxOffset } = useParallax(0.05);
 
   return (
-    <div className="flex flex-col h-svh justify-between relative">
-      {/* Stars & Shooting Stars Background */}
-      <StarsBackground className="z-0" />
-      <ShootingStars />
+    <div className="flex flex-col h-svh justify-between relative snap-start">
+      {/* Stars & Shooting Stars Background with parallax */}
+      <div
+        ref={parallaxRef}
+        className="absolute inset-0 z-0"
+        style={{ transform: `translateY(${parallaxOffset}px)` }}
+      >
+        <StarsBackground
+          starDensity={0.00045}
+          allStarsTwinkle={true}
+          twinkleProbability={0.9}
+          minTwinkleSpeed={0.3}
+          maxTwinkleSpeed={0.8}
+        />
+      </div>
+      {/* Multiple meteor layers for a denser shower */}
+      <ShootingStars
+        starColor="#EBB800"
+        trailColor="#F5D76E"
+        starWidth={20}
+        starHeight={2}
+        minSpeed={15}
+        maxSpeed={40}
+        minDelay={1500}
+        maxDelay={4000}
+      />
+      <ShootingStars
+        starColor="#F5D76E"
+        trailColor="#EBB800"
+        starWidth={14}
+        starHeight={1}
+        minSpeed={20}
+        maxSpeed={50}
+        minDelay={2500}
+        maxDelay={5500}
+      />
+      <ShootingStars
+        starColor="#FFFFFF"
+        trailColor="#F5D76E"
+        starWidth={10}
+        starHeight={1}
+        minSpeed={25}
+        maxSpeed={45}
+        minDelay={3000}
+        maxDelay={6000}
+      />
 
       {/* Spline 3D Robot Background */}
       <div id="webgl">
@@ -58,6 +102,7 @@ export function Hero() {
             <Button
               onMouseEnter={() => setHovering(true)}
               onMouseLeave={() => setHovering(false)}
+              className="animate-glow-pulse"
             >
               [Explore the Architecture]
             </Button>

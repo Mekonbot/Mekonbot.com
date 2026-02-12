@@ -1,6 +1,7 @@
 "use client";
 
 import Link from "next/link";
+import Image from "next/image";
 import { Button } from "./ui/button";
 import { MobileMenu } from "./mobile-menu";
 import { useEffect, useState, useCallback, useRef } from "react";
@@ -15,12 +16,17 @@ const navItems = [
 
 export const Header = () => {
   const [scrollProgress, setScrollProgress] = useState(0);
+  const [pageProgress, setPageProgress] = useState(0);
   const [activeSection, setActiveSection] = useState("");
   const ticking = useRef(false);
 
   const update = useCallback(() => {
     const y = window.scrollY;
     setScrollProgress(Math.min(y / 150, 1));
+
+    // Page-level scroll progress for progress bar
+    const docHeight = document.documentElement.scrollHeight - window.innerHeight;
+    setPageProgress(docHeight > 0 ? Math.min(y / docHeight, 1) : 0);
 
     // Determine active section based on scroll position
     const sections = navItems.map((item) => item.href.slice(1));
@@ -69,12 +75,31 @@ export const Header = () => {
         willChange: "backdrop-filter",
       }}
     >
+      {/* Scroll progress bar */}
+      <div
+        className="absolute top-0 left-0 h-[2px] bg-primary/80"
+        style={{
+          width: `${pageProgress * 100}%`,
+          transition: "width 100ms linear",
+        }}
+      />
       <header className="flex items-center justify-between container">
         <Link
           href="/"
-          className="text-foreground font-bold text-xl tracking-tight transition-colors duration-300 hover:text-primary"
+          className="transition-all duration-300 origin-left"
+          style={{
+            transform: `scale(${1 - p * 0.1})`,
+            transition: "transform 100ms ease-out",
+          }}
         >
-          MekonBot
+          <Image
+            src="/logo-i.png"
+            alt="MekonBot"
+            width={240}
+            height={80}
+            className="h-16 w-auto"
+            priority
+          />
         </Link>
         <nav className="flex max-lg:hidden absolute left-1/2 -translate-x-1/2 items-center justify-center gap-x-10">
           {navItems.map((item) => (

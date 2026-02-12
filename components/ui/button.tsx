@@ -4,9 +4,10 @@ import { cva, type VariantProps } from "class-variance-authority"
 
 import { cn } from "@/lib/utils"
 import { px } from "../utils"
+import { useMagnetic } from "../hooks/use-magnetic"
 
 const buttonVariants = cva(
-  "inline-flex relative uppercase border font-mono cursor-pointer items-center font-medium has-[>svg]:px-3 justify-center gap-2 whitespace-nowrap font-medium ease-out transition-all duration-300 disabled:pointer-events-none disabled:opacity-50 [&_svg]:pointer-events-none [&_svg:not([class*='size-'])]:size-4 shrink-0 [&_svg]:shrink-0 outline-none focus-visible:border-ring focus-visible:ring-ring/50 focus-visible:ring-[3px] aria-invalid:ring-destructive/20 dark:aria-invalid:ring-destructive/40 aria-invalid:border-destructive [clip-path:polygon(var(--poly-roundness)_0,calc(100%_-_var(--poly-roundness))_0,100%_0,100%_calc(100%_-_var(--poly-roundness)),calc(100%_-_var(--poly-roundness))_100%,0_100%,0_calc(100%_-_var(--poly-roundness)),0_var(--poly-roundness))]",
+  "inline-flex relative uppercase border font-mono cursor-pointer items-center font-medium has-[>svg]:px-3 justify-center gap-2 whitespace-nowrap font-medium ease-out transition-all duration-300 active:scale-95 active:duration-100 disabled:pointer-events-none disabled:opacity-50 [&_svg]:pointer-events-none [&_svg:not([class*='size-'])]:size-4 shrink-0 [&_svg]:shrink-0 outline-none focus-visible:border-ring focus-visible:ring-ring/50 focus-visible:ring-[3px] aria-invalid:ring-destructive/20 dark:aria-invalid:ring-destructive/40 aria-invalid:border-destructive [clip-path:polygon(var(--poly-roundness)_0,calc(100%_-_var(--poly-roundness))_0,100%_0,100%_calc(100%_-_var(--poly-roundness)),calc(100%_-_var(--poly-roundness))_100%,0_100%,0_calc(100%_-_var(--poly-roundness)),0_var(--poly-roundness))]",
   {
     variants: {
       variant: {
@@ -31,18 +32,24 @@ function Button({
   size,
   children,
   asChild = false,
+  magnetic = true,
   ...props
 }: React.ComponentProps<"button"> &
   VariantProps<typeof buttonVariants> & {
     asChild?: boolean
+    magnetic?: boolean
   }) {
   const Comp = asChild ? Slot : "button"
+  const { ref: magneticRef, style: magneticStyle, handleMouseMove, handleMouseLeave } = useMagnetic({
+    radius: 120,
+    strength: 0.25,
+  })
 
   const polyRoundness = 16
   const hypotenuse = polyRoundness * 2
   const hypotenuseHalf = polyRoundness / 2 - 1.5
 
-  return (
+  const buttonEl = (
     <Comp
       style={{
         "--poly-roundness": px(polyRoundness),
@@ -58,6 +65,19 @@ function Button({
         {children}
       </Slottable>
     </Comp>
+  )
+
+  if (!magnetic) return buttonEl
+
+  return (
+    <div
+      ref={magneticRef}
+      onMouseMove={handleMouseMove}
+      onMouseLeave={handleMouseLeave}
+      style={{ ...magneticStyle, display: "inline-flex" }}
+    >
+      {buttonEl}
+    </div>
   )
 }
 

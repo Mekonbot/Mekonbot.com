@@ -14,7 +14,7 @@ import { Leva } from "leva";
 
 export default function Home() {
   return (
-    <>
+    <div className="snap-y snap-proximity">
       <Hero />
       <SectionDivider />
       <TheShift />
@@ -33,6 +33,6 @@ export default function Home() {
       <SectionDivider />
       <Footer />
       <Leva hidden />
-    </>
+    </div>
   );
 }

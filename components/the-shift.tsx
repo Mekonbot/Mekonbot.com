@@ -4,6 +4,7 @@ import React from "react";
 import { ClippedCard } from "@/components/ui/clipped-card";
 import { RevealSection } from "@/components/ui/reveal-section";
 import { useScrollReveal } from "@/components/hooks/use-scroll-reveal";
+import { useTilt } from "@/components/hooks/use-tilt";
 
 /* ── Icons ──────────────────────────────────────────────── */
 
@@ -60,6 +61,25 @@ const cards = [
 
 /* ── Component ──────────────────────────────────────────── */
 
+function TiltCard({ children }: { children: React.ReactNode }) {
+  const { ref, style, handleMouseMove, handleMouseLeave } = useTilt({
+    maxTilt: 6,
+    perspective: 800,
+    scale: 1.02,
+  });
+
+  return (
+    <div
+      ref={ref}
+      onMouseMove={handleMouseMove}
+      onMouseLeave={handleMouseLeave}
+      style={style}
+    >
+      {children}
+    </div>
+  );
+}
+
 export function TheShift() {
   const { ref, inView } = useScrollReveal({ threshold: 0.1 });
 
@@ -85,19 +105,21 @@ export function TheShift() {
                 transition: `opacity 0.7s cubic-bezier(0.16, 1, 0.3, 1) ${i * 150}ms, transform 0.7s cubic-bezier(0.16, 1, 0.3, 1) ${i * 150}ms`,
               }}
             >
-              <ClippedCard className="h-full">
-                <div className="p-8 lg:p-10">
-                  <div className="mb-6 flex items-center justify-center w-12 h-12 border border-border/60 rounded-sm text-primary transition-colors duration-300 group-hover/card:border-primary/40 group-hover/card:bg-primary/[0.05]">
-                    {card.icon}
+              <TiltCard>
+                <ClippedCard className="h-full">
+                  <div className="p-8 lg:p-10">
+                    <div className="mb-6 flex items-center justify-center w-12 h-12 border border-border/60 rounded-sm text-primary transition-colors duration-300 group-hover/card:border-primary/40 group-hover/card:bg-primary/[0.05]">
+                      {card.icon}
+                    </div>
+                    <h3 className="text-xl lg:text-2xl font-sentient text-foreground mb-3">
+                      {card.title}
+                    </h3>
+                    <p className="font-mono text-sm leading-relaxed text-foreground/50">
+                      {card.description}
+                    </p>
                   </div>
-                  <h3 className="text-xl lg:text-2xl font-sentient text-foreground mb-3">
-                    {card.title}
-                  </h3>
-                  <p className="font-mono text-sm leading-relaxed text-foreground/50">
-                    {card.description}
-                  </p>
-                </div>
-              </ClippedCard>
+                </ClippedCard>
+              </TiltCard>
             </div>
           ))}
         </div>
@@ -105,3 +127,4 @@ export function TheShift() {
     </RevealSection>
   );
 }
+
