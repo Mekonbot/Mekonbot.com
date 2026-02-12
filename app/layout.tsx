@@ -23,6 +23,11 @@ export const metadata: Metadata = {
   title: "MekonBot",
   description: "Autonomous intelligence for the next frontier",
   generator: "v0.app",
+  icons: {
+    icon: "/icon.png",
+    shortcut: "/favicon.ico",
+    apple: "/apple-icon.png",
+  },
 };
 
 export default function RootLayout({

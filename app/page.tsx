@@ -10,29 +10,35 @@ import { InfrastructurePlay } from "@/components/infrastructure-play";
 import { Roadmap } from "@/components/roadmap";
 import { Footer } from "@/components/footer";
 import { SectionDivider } from "@/components/ui/section-divider";
-import { Leva } from "leva";
+import { Team } from "@/components/team";
+import { WhoAreWe } from "@/components/who-are-we";
+import { BackgroundLayer } from "@/components/background-layer";
 
 export default function Home() {
   return (
     <div className="snap-y snap-proximity relative z-10">
+      <BackgroundLayer />
       <Hero />
+      <SectionDivider />
+      <WhoAreWe />
       <SectionDivider />
       <TheShift />
       <SectionDivider />
-      <DefiningCategory />
-      <SectionDivider />
-      <CoreArchitecture />
-      <SectionDivider />
       <WarehouseScenario />
+      <SectionDivider />
+      <Roadmap />
       <SectionDivider />
       <RevenueArchitecture />
       <SectionDivider />
       <InfrastructurePlay />
       <SectionDivider />
-      <Roadmap />
+      <DefiningCategory />
+      <SectionDivider />
+      <CoreArchitecture />
+      <SectionDivider />
+      <Team />
       <SectionDivider />
       <Footer />
-      <Leva hidden />
     </div>
   );
 }
