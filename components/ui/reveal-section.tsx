@@ -39,7 +39,7 @@ export function RevealSection({
     <section
       id={id}
       ref={setRefs}
-      className={`snap-start ${className}`}
+      className={`snap-start relative z-10 ${className}`}
       style={{
         opacity: inView ? 1 : 0,
         transform: inView

@@ -58,9 +58,9 @@ export const Header = () => {
   }, [handleScroll, update]);
 
   const p = scrollProgress;
-  const bgOpacity = p * 0.88;
-  const blur = p * 24;
-  const borderOpacity = p * 0.15;
+  const bgOpacity = 0.6 + p * 0.28;
+  const blur = 12 + p * 12;
+  const borderOpacity = 0.08 + p * 0.07;
 
   return (
     <div

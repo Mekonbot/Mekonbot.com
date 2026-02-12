@@ -74,7 +74,7 @@ export function Hero() {
         <div className="absolute inset-0 bg-gradient-to-t from-black via-black/40 to-transparent pointer-events-none" />
       </div>
 
-      <div className="pb-20 mt-auto text-center relative px-4">
+      <div className="pb-20 mt-auto text-center relative z-10 px-4">
         {/* H1 */}
         <h1
           className="text-4xl sm:text-5xl md:text-7xl font-sentient text-balance max-w-[720px] mx-auto animate-fade-in-up"
@@ -128,7 +128,7 @@ export function Hero() {
 
       {/* Scroll indicator */}
       <div
-        className="absolute bottom-6 left-1/2 -translate-x-1/2 flex flex-col items-center gap-2 animate-fade-in"
+        className="absolute bottom-6 left-1/2 -translate-x-1/2 flex flex-col items-center gap-2 animate-fade-in z-10"
         style={{ animationDelay: "1.6s" }}
       >
         <span className="font-mono text-[10px] text-foreground/20 uppercase tracking-widest">Scroll</span>

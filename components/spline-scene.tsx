@@ -1,6 +1,6 @@
 "use client";
 
-import { Suspense, lazy, useState, useEffect } from "react";
+import { Suspense, lazy, useState, useEffect, useRef } from "react";
 
 const Spline = lazy(() => import("@splinetool/react-spline"));
 
@@ -34,6 +34,8 @@ function MobileFallback() {
 
 export function SplineScene({ url, className = "" }: SplineSceneProps) {
     const [isMobile, setIsMobile] = useState(false);
+    const [shouldLoad, setShouldLoad] = useState(false);
+    const timerRef = useRef<ReturnType<typeof setTimeout>>();
 
     useEffect(() => {
         const check = () => setIsMobile(window.innerWidth < 768);
@@ -42,14 +44,30 @@ export function SplineScene({ url, className = "" }: SplineSceneProps) {
         return () => window.removeEventListener("resize", check);
     }, []);
 
+    // Defer Spline loading — wait until page is idle to avoid blocking initial render
+    useEffect(() => {
+        if (isMobile) return;
+
+        if ("requestIdleCallback" in window) {
+            const id = (window as unknown as { requestIdleCallback: (cb: () => void) => number }).requestIdleCallback(() => setShouldLoad(true));
+            return () => (window as unknown as { cancelIdleCallback: (id: number) => void }).cancelIdleCallback(id);
+        } else {
+            // Fallback: load after 1.5s
+            timerRef.current = setTimeout(() => setShouldLoad(true), 1500);
+            return () => clearTimeout(timerRef.current);
+        }
+    }, [isMobile]);
+
     return (
         <div className={`relative ${className}`}>
             {isMobile ? (
                 <MobileFallback />
-            ) : (
+            ) : shouldLoad ? (
                 <Suspense fallback={<SplineLoader />}>
                     <Spline scene={url} />
                 </Suspense>
+            ) : (
+                <SplineLoader />
             )}
         </div>
     );
