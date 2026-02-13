@@ -14,10 +14,21 @@ import { Team } from "@/components/team";
 import { WhoAreWe } from "@/components/who-are-we";
 import { BackgroundLayer } from "@/components/background-layer";
 
+import { LoadingScreen } from "@/components/loading-screen";
+import { useEffect, useState } from "react";
+
 export default function Home() {
+  const [isLoaded, setIsLoaded] = useState(false);
+
+  useEffect(() => {
+    // Force scroll to top on mount/refresh
+    window.scrollTo(0, 0);
+  }, []);
+
   return (
     <div className="snap-y snap-proximity relative z-10">
-      <BackgroundLayer />
+      <LoadingScreen isLoaded={isLoaded} />
+      <BackgroundLayer onLoad={() => setIsLoaded(true)} />
       <Hero />
       <SectionDivider />
       <WhoAreWe />

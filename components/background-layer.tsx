@@ -7,7 +7,7 @@ import { useState } from "react";
 const SPLINE_SCENE_URL =
     "https://prod.spline.design/nkEUK7XZrV2vgMPq/scene.splinecode";
 
-export function BackgroundLayer() {
+export function BackgroundLayer({ onLoad }: { onLoad?: () => void }) {
     const [hovering, setHovering] = useState(false);
 
     return (
@@ -24,6 +24,7 @@ export function BackgroundLayer() {
                     <SplineScene
                         url={SPLINE_SCENE_URL}
                         className="w-full h-full"
+                        onLoad={onLoad}
                     />
                 </div>
 

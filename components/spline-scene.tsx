@@ -7,6 +7,7 @@ const Spline = lazy(() => import("@splinetool/react-spline"));
 interface SplineSceneProps {
     url: string;
     className?: string;
+    onLoad?: () => void;
 }
 
 function SplineLoader() {
@@ -14,9 +15,6 @@ function SplineLoader() {
         <div className="absolute inset-0 flex items-center justify-center">
             <div className="flex flex-col items-center gap-4">
                 <div className="w-8 h-8 border-2 border-primary/30 border-t-primary rounded-full animate-spin" />
-                <span className="font-mono text-xs text-foreground/30 uppercase tracking-widest">
-                    Loading 3D Scene
-                </span>
             </div>
         </div>
     );
@@ -32,13 +30,13 @@ function MobileFallback() {
     );
 }
 
-export function SplineScene({ url, className = "" }: SplineSceneProps) {
+export function SplineScene({ url, className = "", onLoad }: SplineSceneProps) {
     const [isMobile, setIsMobile] = useState(false);
     const [shouldLoad, setShouldLoad] = useState(false);
-    const timerRef = useRef<ReturnType<typeof setTimeout>>();
+    const timerRef = useRef<ReturnType<typeof setTimeout> | null>(null);
 
     useEffect(() => {
-        const check = () => setIsMobile(window.innerWidth < 768);
+        const check = (e?: Event) => setIsMobile(window.innerWidth < 768);
         check();
         window.addEventListener("resize", check);
         return () => window.removeEventListener("resize", check);
@@ -46,17 +44,15 @@ export function SplineScene({ url, className = "" }: SplineSceneProps) {
 
     // Defer Spline loading — wait until page is idle to avoid blocking initial render
     useEffect(() => {
-        if (isMobile) return;
-
-        if ("requestIdleCallback" in window) {
-            const id = (window as unknown as { requestIdleCallback: (cb: () => void) => number }).requestIdleCallback(() => setShouldLoad(true));
-            return () => (window as unknown as { cancelIdleCallback: (id: number) => void }).cancelIdleCallback(id);
-        } else {
-            // Fallback: load after 1.5s
-            timerRef.current = setTimeout(() => setShouldLoad(true), 1500);
-            return () => clearTimeout(timerRef.current);
+        if (isMobile) {
+            if (onLoad) onLoad();
+            return;
         }
-    }, [isMobile]);
+
+        // Load immediately for the loading screen experience, or keep the small delay?
+        // Let's reduce delay substantially since we have a loading screen now.
+        setShouldLoad(true);
+    }, [isMobile, onLoad]);
 
     return (
         <div className={`relative ${className}`}>
@@ -64,7 +60,7 @@ export function SplineScene({ url, className = "" }: SplineSceneProps) {
                 <MobileFallback />
             ) : shouldLoad ? (
                 <Suspense fallback={<SplineLoader />}>
-                    <Spline scene={url} />
+                    <Spline scene={url} onLoad={onLoad} />
                 </Suspense>
             ) : (
                 <SplineLoader />
