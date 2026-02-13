@@ -43,7 +43,7 @@ export function Team() {
                     }}
                 >
                     <TeamMember name="Irone Bensimone" role="Executive" />
-                    <TeamMember name="Idriss Fraçois Eliguene" role="Director" />
+                    <TeamMember name="Idriss François Eliguene" role="Director" />
                     <TeamMember name="Haruna Rashid Yakubu" role="Technical Manager" />
                 </div>
             </div>

@@ -21,9 +21,46 @@ export const viewport: Viewport = {
 };
 
 export const metadata: Metadata = {
-  title: "MekonBot",
-  description: "Autonomous intelligence for the next frontier",
-  generator: "v0.app",
+  title: "MekonBot | The Governance Layer for Humanoid Robotics",
+  description: "MekonBot is the independent certification authority and policy enforcement infrastructure for humanoid robotics. We verify skills before they execute, ensuring safety and compliance in the physical world.",
+  keywords: ["humanoid robotics", "robot governance", "AI safety", "industrial automation", "robot certification", "policy enforcement"],
+  authors: [{ name: "MekonBot Team" }],
+  openGraph: {
+    title: "MekonBot | The Governance Layer for Humanoid Robotics",
+    description: "Standardizing trust for the next generation of industrial automation. Independent certification authority and policy enforcement infrastructure.",
+    url: "https://mekonbot.com",
+    siteName: "MekonBot",
+    images: [
+      {
+        url: "/og-image.png", // Assuming an OG image exists or will exist
+        width: 1200,
+        height: 630,
+        alt: "MekonBot - Governance for Humanoid Robotics",
+      },
+    ],
+    locale: "en_US",
+    type: "website",
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "MekonBot | The Governance Layer for Humanoid Robotics",
+    description: "Standardizing trust for the next generation of industrial automation. Independent certification authority and policy enforcement infrastructure.",
+    images: ["/og-image.png"],
+  },
+  robots: {
+    index: true,
+    follow: true,
+    googleBot: {
+      index: true,
+      follow: true,
+      "max-video-preview": -1,
+      "max-image-preview": "large",
+      "max-snippet": -1,
+    },
+  },
+  alternates: {
+    canonical: "https://mekonbot.com",
+  },
   icons: {
     icon: "/logo-i.png",
     shortcut: "/logo-i.png",
