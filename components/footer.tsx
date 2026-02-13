@@ -15,7 +15,7 @@ function GitHubIcon() { return <svg width="18" height="18" viewBox="0 0 24 24" f
 
 export function Footer() {
   return (
-    <RevealSection className="relative pb-12 lg:pb-16 pt-16 lg:pt-24" parallaxFactor={0.01}>
+    <RevealSection id="contact" className="relative pb-12 lg:pb-16 pt-16 lg:pt-24" parallaxFactor={0.01}>
       <footer className="container">
         {/* Top separator */}
         <div className="relative mb-12 lg:mb-16">

@@ -126,7 +126,7 @@ export const Header = () => {
             className="max-lg:hidden text-[12.3px] h-9 px-4 hidden sm:inline-flex"
             variant="outline"
           >
-            <Link href="#contact">Contact Sales</Link>
+            <Link href="#contact">Contact Us</Link>
           </Button>
           <Button
             asChild

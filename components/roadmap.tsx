@@ -14,12 +14,66 @@ function GlobeIcon() { return <svg width="20" height="20" viewBox="0 0 24 24" fi
 
 /* ── Data ────────────────────────────────────────────────── */
 
-interface Phase { id: number; icon: React.ReactNode; label: string; timeframe: string; title: string; milestones: string[]; status: "active" | "upcoming" | "future"; }
+interface Phase { id: number; icon: React.ReactNode; label: string; timeframe: string; title: string; description: string; milestones: string[]; kpis: string[]; status: "active" | "upcoming" | "future"; }
 
 const phases: Phase[] = [
-  { id: 1, icon: <BookOpenIcon />, label: "Phase 1", timeframe: "Now -- 6 months", title: "Standard definition & certification authority V1", milestones: ["Publish skill manifest specification", "Launch certification authority V1", "Onboard founding hardware partners", "Establish governance advisory board"], status: "active" },
-  { id: 2, icon: <FlaskIcon />, label: "Phase 2", timeframe: "6 -- 14 months", title: "Emulation validation layer & first pilot deployments", milestones: ["Deploy emulation sandbox for skill testing", "First pilot with industrial logistics partner", "Runtime policy engine beta release", "Regulatory pre-certification alignment"], status: "upcoming" },
-  { id: 3, icon: <GlobeIcon />, label: "Phase 3", timeframe: "14 -- 24 months", title: "Industrial SaaS rollout & global ecosystem integration", milestones: ["Full SaaS platform launch", "Global ecosystem marketplace integration", "Enterprise compliance & audit module", "Multi-region regulatory certification"], status: "future" },
+  {
+    id: 1,
+    icon: <BookOpenIcon />,
+    label: "Phase 1 - V1",
+    timeframe: "0 — 6 months",
+    title: "Standard & Certification Authority",
+    description: "Definition of the immutable standard for skill execution. Launching the Certification Authority V1 to prove that software can be audited independently of hardware.",
+    milestones: [
+      "Manifest V1.0 Specification",
+      "Policy Engine Alpha Release",
+      "Founding Hardware Partners Onboarded"
+    ],
+    kpis: [
+      "3 Founding Partners",
+      "5 Certified Skills",
+      "1st Audit Generated"
+    ],
+    status: "active"
+  },
+  {
+    id: 2,
+    icon: <FlaskIcon />,
+    label: "Phase 2 - V2",
+    timeframe: "6 — 14 months",
+    title: "Emulation & Validation",
+    description: "De-risking deployment through rigorous virtualization. We replicate the physical world in QEMU/Sandbox environments to validate skills at zero marginal cost.",
+    milestones: [
+      "Emulation Sandbox Beta",
+      "Reference Robot Integration",
+      "Regulatory Pre-alignment"
+    ],
+    kpis: [
+      "100+ Simulated Hours",
+      "Zero-Hardware Validation",
+      "Pre-Series A De-risked"
+    ],
+    status: "upcoming"
+  },
+  {
+    id: 3,
+    icon: <GlobeIcon />,
+    label: "Phase 3 - V3",
+    timeframe: "14 — 24 months",
+    title: "Industrial SaaS Platform",
+    description: "Scaling trust. The platform becomes the industrial gateway, automating compliance pipelines and generating insurance-grade audit trails for global fleets.",
+    milestones: [
+      "Full SaaS Platform Launch",
+      "Automated Certification CI/CD",
+      "Enterprise Compliance Module"
+    ],
+    kpis: [
+      "Automated Pipelines Live",
+      "5+ Enterprise Pilots",
+      "Insurance Partner Signed"
+    ],
+    status: "future"
+  },
 ];
 
 /* ── Phase card ─────────────────────────────────────────── */
@@ -52,16 +106,42 @@ function PhaseCard({ phase, visible, index }: { phase: Phase; visible: boolean; 
           </div>
           <span className="font-mono text-[11px] uppercase tracking-widest text-foreground/30 mb-1">{phase.label}</span>
           <span className={cn("font-mono text-xs mb-4", isActive ? "text-primary/70" : "text-foreground/25")}>{phase.timeframe}</span>
-          <h3 className="text-lg lg:text-xl font-sentient text-foreground mb-6 leading-snug">{phase.title}</h3>
+          <h3 className="text-lg lg:text-xl font-sentient text-foreground mb-3 leading-snug">{phase.title}</h3>
+
+          <p className="text-sm text-foreground/60 leading-relaxed mb-6">{phase.description}</p>
+
           <div className={cn("h-px mb-6", isActive ? "bg-primary/15" : "bg-border/20")} />
-          <ul className="space-y-3 mt-auto">
-            {phase.milestones.map((m) => (
-              <li key={m} className="flex items-start gap-3 font-mono text-xs leading-relaxed text-foreground/40 group-hover/card:text-foreground/50 transition-colors duration-300">
-                <span className={cn("mt-1.5 shrink-0 size-1.5 rounded-full", isActive ? "bg-primary/60" : "bg-foreground/20")} />
-                {m}
-              </li>
-            ))}
-          </ul>
+
+          <div className="space-y-4">
+            <div>
+              <span className="block font-mono text-[10px] uppercase tracking-widest text-foreground/30 mb-3">Milestones</span>
+              <ul className="space-y-2">
+                {phase.milestones.map((m) => (
+                  <li key={m} className="flex items-start gap-3 font-mono text-xs leading-relaxed text-foreground/50 group-hover/card:text-foreground/70 transition-colors duration-300">
+                    <span className={cn("mt-1.5 shrink-0 size-1 rounded-full", isActive ? "bg-primary/60" : "bg-foreground/20")} />
+                    {m}
+                  </li>
+                ))}
+              </ul>
+            </div>
+
+            <div className="pt-2">
+              <span className="block font-mono text-[10px] uppercase tracking-widest text-primary/60 mb-3">Target KPIs</span>
+              <div className="flex flex-wrap gap-2">
+                {phase.kpis.map((kpi) => (
+                  <span key={kpi} className={cn(
+                    "inline-flex items-center px-2 py-1 rounded text-[10px] font-mono border",
+                    isActive
+                      ? "bg-primary/10 border-primary/20 text-primary/90"
+                      : "bg-foreground/[0.03] border-foreground/10 text-foreground/50"
+                  )}>
+                    {kpi}
+                  </span>
+                ))}
+              </div>
+            </div>
+          </div>
+
         </div>
       </ClippedCard>
     </div>
@@ -99,8 +179,10 @@ export function Roadmap() {
       <div className="container" ref={ref}>
         <div className="text-center mb-16 lg:mb-20">
           <span className="inline-block font-mono text-sm uppercase tracking-widest text-primary mb-4">Roadmap &mdash; The Plan</span>
-          <h2 className="text-3xl sm:text-4xl lg:text-5xl font-sentient text-balance max-w-[600px] mx-auto">Building the <i className="font-light">standard.</i></h2>
-          <p className="font-mono text-sm text-foreground/40 mt-6 max-w-[480px] mx-auto text-balance">Three phases from standard definition to global infrastructure. Each milestone compounds the moat.</p>
+          <h2 className="text-3xl sm:text-4xl lg:text-5xl font-sentient text-balance max-w-[720px] mx-auto">Standardize. <i className="font-light">Emulate.</i> Industrialize.</h2>
+          <p className="font-mono text-sm text-foreground/60 mt-6 max-w-[580px] mx-auto text-balance leading-relaxed">
+            We don't build robots; we build the governance layer above them. A focused 24-month journey from standard definition to industrial SaaS.
+          </p>
         </div>
 
         <TimelineConnector visible={inView} />

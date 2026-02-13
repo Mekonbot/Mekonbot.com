@@ -35,7 +35,7 @@ export function Hero() {
             className="flex flex-col sm:flex-row items-center justify-center gap-4 mt-14 animate-fade-in-up"
             style={{ animationDelay: "0.8s" }}
           >
-            <Link className="contents" href="#architecture">
+            <Link className="contents" href="#technology">
               <Button
                 onMouseEnter={() => setHovering(true)}
                 onMouseLeave={() => setHovering(false)}

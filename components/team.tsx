@@ -42,9 +42,9 @@ export function Team() {
                         transition: "opacity 0.8s cubic-bezier(0.16, 1, 0.3, 1), transform 0.8s cubic-bezier(0.16, 1, 0.3, 1)",
                     }}
                 >
-                    <TeamMember name="Irone Bensimone" role="Executive" />
-                    <TeamMember name="Idriss François Eliguene" role="Director" />
-                    <TeamMember name="Haruna Rashid Yakubu" role="Technical Manager" />
+                    <TeamMember name="Irone Bensimone" role="CEO & Founder & Board Member" />
+                    <TeamMember name="Idriss François Eliguene" role="CTO & Board Member" />
+                    <TeamMember name="Haruna Rashid Yakubu" role="COO & Board Member" />
                 </div>
             </div>
         </RevealSection>

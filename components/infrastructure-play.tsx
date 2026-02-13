@@ -79,7 +79,7 @@ export function InfrastructurePlay() {
   const { ref, inView } = useScrollReveal({ threshold: 0.15 });
 
   return (
-    <RevealSection className="relative py-24 lg:py-36">
+    <RevealSection id="investor-thesis" className="relative py-24 lg:py-36">
       <div className="container">
         <div className="text-center mb-16 lg:mb-20">
           <span className="inline-block font-mono text-sm uppercase tracking-widest text-primary mb-4">Market Opportunity &mdash; Key Numbers</span>
