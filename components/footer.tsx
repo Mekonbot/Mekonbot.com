@@ -1,6 +1,7 @@
 "use client";
 
 import React from "react";
+import Image from "next/image";
 import { ClippedCard } from "@/components/ui/clipped-card";
 import { RevealSection } from "@/components/ui/reveal-section";
 
@@ -29,7 +30,13 @@ export function Footer() {
             <div className="flex flex-col lg:flex-row items-start lg:items-center justify-between gap-10 lg:gap-6">
               {/* Left */}
               <div className="flex-1">
-                <span className="text-foreground font-bold text-lg tracking-tight block mb-2">MekonBot</span>
+                <Image
+                  src="/logo-i.png"
+                  alt="MekonBot"
+                  width={280}
+                  height={100}
+                  className="h-12 w-auto object-contain mb-4 opacity-90 hover:opacity-100 transition-opacity"
+                />
                 <p className="font-mono text-sm text-foreground/60 leading-relaxed">{'© 2026. Governance for the Physical World.'}</p>
               </div>
 

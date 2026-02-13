@@ -35,17 +35,16 @@ export function Team() {
 
                 <div
                     ref={ref}
-                    className="grid grid-cols-2 md:grid-cols-4 gap-8 lg:gap-12"
+                    className="flex flex-wrap justify-center gap-8 lg:gap-12"
                     style={{
                         opacity: inView ? 1 : 0,
                         transform: inView ? "translateY(0)" : "translateY(24px)",
                         transition: "opacity 0.8s cubic-bezier(0.16, 1, 0.3, 1), transform 0.8s cubic-bezier(0.16, 1, 0.3, 1)",
                     }}
                 >
-                    <TeamMember name="Board Member" role="Executive" />
-                    <TeamMember name="Board Member" role="Director" />
-                    <TeamMember name="Advisor" role="Strategic" />
-                    <TeamMember name="Advisor" role="Technical" />
+                    <TeamMember name="Irone Bensimone" role="Executive" />
+                    <TeamMember name="Idriss Fraçois Eliguene" role="Director" />
+                    <TeamMember name="Haruna Rashid Yakubu" role="Technical Manager" />
                 </div>
             </div>
         </RevealSection>

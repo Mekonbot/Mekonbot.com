@@ -80,7 +80,7 @@ function TimelineConnector({ visible }: { visible: boolean }) {
         const isActive = phase.status === "active";
         return (
           <div key={phase.id} className="relative z-10 flex flex-col items-center" style={{ opacity: visible ? 1 : 0, transition: `opacity 0.6s ease-out ${i * 200}ms` }}>
-            <div className={cn("size-4 rounded-full border-2 transition-all duration-300", isActive ? "border-primary bg-primary/30 shadow-[0_0_12px_rgba(255,199,0,0.3)]" : "border-border/50 bg-background")} />
+            <div className={cn("size-4 rounded-full border-2 transition-all duration-300", isActive ? "border-primary bg-primary/30 shadow-[0_0_12px_rgba(59,130,246,0.3)]" : "border-border/50 bg-background")} />
             <span className={cn("mt-3 font-mono text-[10px] uppercase tracking-widest", isActive ? "text-primary/70" : "text-foreground/20")}>{phase.label}</span>
           </div>
         );

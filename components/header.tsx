@@ -64,23 +64,19 @@ export const Header = () => {
 
   return (
     <div
-      className="fixed z-50 top-0 left-0 w-full"
-      style={{
-        paddingTop: `${Math.round(32 - p * 16)}px`,
-        paddingBottom: `${Math.round(p * 14)}px`,
-        background: `rgba(0, 0, 0, ${bgOpacity})`,
-        backdropFilter: `blur(${blur}px)`,
-        WebkitBackdropFilter: `blur(${blur}px)`,
-        borderBottom: `1px solid rgba(66, 66, 66, ${borderOpacity})`,
-        willChange: "backdrop-filter",
-      }}
+      className={cn(
+        "fixed z-50 top-0 left-0 w-full transition-[padding,background-color,border-color,backdrop-filter] duration-300 border-b",
+        scrollProgress > 0.05
+          ? "py-4 bg-background/80 backdrop-blur-md border-border/50"
+          : "py-8 bg-transparent border-transparent"
+      )}
     >
       {/* Scroll progress bar */}
       <div
-        className="absolute top-0 left-0 h-[2px] bg-primary/80"
+        className="absolute bottom-0 left-0 h-[1px] bg-primary/50 origin-left"
         style={{
-          width: `${pageProgress * 100}%`,
-          transition: "width 100ms linear",
+          transform: `scaleX(${pageProgress})`,
+          transition: "transform 100ms linear",
         }}
       />
       <header className="flex items-center justify-between container">
@@ -88,51 +84,58 @@ export const Header = () => {
           href="/"
           className="transition-all duration-300 origin-left"
           style={{
-            transform: `scale(${1 - p * 0.1})`,
-            transition: "transform 100ms ease-out",
+            transform: `scale(${scrollProgress > 0.05 ? 0.9 : 1})`,
           }}
         >
           <Image
             src="/logo-i.png"
             alt="MekonBot"
-            width={240}
-            height={80}
-            className="h-16 w-auto"
+            width={480}
+            height={160}
+            className="h-20 w-auto object-contain"
             priority
           />
         </Link>
-        <nav className="flex max-lg:hidden absolute left-1/2 -translate-x-1/2 items-center justify-center gap-x-10">
+        <nav className="flex max-lg:hidden absolute left-1/2 -translate-x-1/2 items-center justify-center gap-x-8">
           {navItems.map((item) => (
             <Link
               className={cn(
-                "uppercase inline-block font-mono text-sm transition-all duration-300 ease-out relative",
+                "uppercase inline-block font-mono text-[12.3px] font-semibold tracking-wider transition-all duration-300 ease-out relative hover:text-primary",
                 activeSection === item.href.slice(1)
                   ? "text-primary"
-                  : "text-foreground/50 hover:text-foreground/80",
+                  : "text-foreground/90"
               )}
               href={item.href}
               key={item.name}
             >
-              {item.name}
-              {/* Active indicator dot */}
-              <span
-                className={cn(
-                  "absolute -bottom-2 left-1/2 -translate-x-1/2 size-1 rounded-full bg-primary transition-all duration-300",
-                  activeSection === item.href.slice(1)
-                    ? "opacity-100 scale-100"
-                    : "opacity-0 scale-0",
+              <span className="relative z-10">
+                {activeSection === item.href.slice(1) && (
+                  <span className="mr-1 text-primary animate-pulse">{'>'}</span>
                 )}
-              />
+                {item.name}
+              </span>
+
+              {/* Active indicator dot - Removed in favor of chevron or color change for cleaner look */}
             </Link>
           ))}
         </nav>
-        <Button
-          asChild
-          size="sm"
-          className="max-lg:hidden"
-        >
-          <Link href="#data-room">Access Data Room</Link>
-        </Button>
+        <div className="flex items-center gap-4">
+          <Button
+            asChild
+            size="sm"
+            className="max-lg:hidden text-[12.3px] h-9 px-4 hidden sm:inline-flex"
+            variant="outline"
+          >
+            <Link href="#contact">Contact Sales</Link>
+          </Button>
+          <Button
+            asChild
+            size="sm"
+            className="max-lg:hidden text-[12.3px] h-9 px-4"
+          >
+            <Link href="#data-room">Access Data Room</Link>
+          </Button>
+        </div>
         <MobileMenu />
       </header>
     </div>

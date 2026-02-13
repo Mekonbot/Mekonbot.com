@@ -4,6 +4,7 @@ import { Geist_Mono } from "next/font/google";
 import localFont from "next/font/local";
 import "./globals.css";
 import { Header } from "@/components/header";
+import { ThemeProvider } from "@/components/theme-provider"
 
 const geistMono = Geist_Mono({
   variable: "--font-geist-mono",
@@ -16,7 +17,7 @@ export const viewport: Viewport = {
   width: "device-width",
   initialScale: 1,
   maximumScale: 5,
-  themeColor: "#000000",
+  themeColor: "#2d3b80",
 };
 
 export const metadata: Metadata = {
@@ -24,11 +25,13 @@ export const metadata: Metadata = {
   description: "Autonomous intelligence for the next frontier",
   generator: "v0.app",
   icons: {
-    icon: "/icon.png",
-    shortcut: "/favicon.ico",
-    apple: "/apple-icon.png",
+    icon: "/logo-i.png",
+    shortcut: "/logo-i.png",
+    apple: "/logo-i.png",
   },
 };
+
+
 
 export default function RootLayout({
   children,
@@ -36,13 +39,19 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en">
+    <html lang="en" suppressHydrationWarning>
       <body
         className={`${geistMono.variable} antialiased`}
-        suppressHydrationWarning
       >
-        <Header />
-        {children}
+        <ThemeProvider
+          attribute="class"
+          defaultTheme="dark"
+          enableSystem={false}
+          disableTransitionOnChange
+        >
+          <Header />
+          {children}
+        </ThemeProvider>
       </body>
     </html>
   );

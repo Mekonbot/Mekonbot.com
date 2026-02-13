@@ -22,19 +22,19 @@ export default function Home() {
       <SectionDivider />
       <WhoAreWe />
       <SectionDivider />
-      <TheShift />
+      <TheShift /> {/* Context/Problem */}
       <SectionDivider />
-      <WarehouseScenario />
+      <DefiningCategory /> {/* The Solution Concept */}
       <SectionDivider />
-      <Roadmap />
+      <CoreArchitecture /> {/* How it Works */}
       <SectionDivider />
-      <RevenueArchitecture />
+      <WarehouseScenario /> {/* Proof by Example */}
       <SectionDivider />
-      <InfrastructurePlay />
+      <InfrastructurePlay /> {/* Market Opportunity */}
       <SectionDivider />
-      <DefiningCategory />
+      <RevenueArchitecture /> {/* Business Model */}
       <SectionDivider />
-      <CoreArchitecture />
+      <Roadmap /> {/* Timeline */}
       <SectionDivider />
       <Team />
       <SectionDivider />

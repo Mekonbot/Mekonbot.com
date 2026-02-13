@@ -11,20 +11,23 @@ export function BackgroundLayer() {
     const [hovering, setHovering] = useState(false);
 
     return (
-        <div className="fixed inset-0 z-0 pointer-events-none">
+        <div className="fixed inset-0 z-0 pointer-events-none bg-[#131936]">
             {/* Particles Layer */}
             <div className="absolute inset-0 z-0">
                 <GL hovering={hovering} />
             </div>
 
             {/* Robot Layer */}
-            <div className="absolute inset-0 z-10">
-                <SplineScene
-                    url={SPLINE_SCENE_URL}
-                    className="w-full h-full"
-                />
-                {/* Gradient Overlay for text readability across sections */}
-                {/* Increased bottom opacity for text readability (white text on bottom) */}
+            {/* Added 'flex justify-end' to push the content to the right */}
+            <div className="absolute inset-0 z-10 flex justify-end">
+                <div className="w-full md:w-1/2 h-full">
+                    <SplineScene
+                        url={SPLINE_SCENE_URL}
+                        className="w-full h-full"
+                    />
+                </div>
+
+                {/* Gradient Overlay */}
                 <div className="absolute inset-0 bg-gradient-to-t from-background via-background/20 to-transparent" />
             </div>
         </div>

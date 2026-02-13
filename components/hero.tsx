@@ -10,23 +10,23 @@ export function Hero() {
 
   return (
     <div className="flex flex-col h-svh justify-between relative snap-start">
-      <div className="container flex flex-col h-full justify-between">
-        <div className="pb-20 mt-auto text-center relative z-10 px-4">
+      <div className="container flex flex-col h-full justify-center">
+        <div className="text-center relative z-10 px-4">
           {/* H1 */}
           <h1
             className="text-4xl sm:text-5xl md:text-7xl font-sentient text-balance max-w-[720px] mx-auto animate-fade-in-up drop-shadow-md"
             style={{ animationDelay: "0.3s" }}
           >
             The Governance Layer for{" "}
-            <i className="font-light">Humanoid Robotics.</i>
+            <i className="font-normal text-primary">Humanoid Robotics.</i>
           </h1>
 
           {/* Subtitle */}
           <p
-            className="font-mono text-sm sm:text-base text-foreground/70 text-balance mt-8 max-w-[560px] mx-auto animate-fade-in-up drop-shadow-sm"
+            className="font-mono text-base sm:text-lg text-foreground/95 text-balance mt-8 max-w-[720px] mx-auto animate-fade-in-up drop-shadow-md leading-relaxed"
             style={{ animationDelay: "0.55s" }}
           >
-            Independent certification authority and policy enforcement
+            <span className="text-white font-medium">Independent certification authority</span> and policy enforcement
             infrastructure. We verify skills before they execute.
           </p>
 

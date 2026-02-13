@@ -36,7 +36,7 @@ export const GL = ({ hovering }: { hovering: boolean }) => {
       options: [256, 512, 1024],
     },
     showDebugPlane: { value: false },
-    vignetteDarkness: { value: 1.0, min: 0, max: 2, step: 0.1 },
+    vignetteDarkness: { value: 0.0, min: 0, max: 2, step: 0.1 },
     vignetteOffset: { value: 0.4, min: 0, max: 2, step: 0.1 },
     useManualTime: { value: false },
     manualTime: { value: 0, min: 0, max: 50, step: 0.01 },
@@ -44,6 +44,7 @@ export const GL = ({ hovering }: { hovering: boolean }) => {
   return (
     <div id="webgl">
       <Canvas
+        gl={{ alpha: true }}
         camera={{
           position: [
             1.2629783123314589, 2.664606471394044, -1.8178993743288914,
@@ -54,7 +55,6 @@ export const GL = ({ hovering }: { hovering: boolean }) => {
         }}
       >
         {/* <Perf position="top-left" /> */}
-        <color attach="background" args={["#0D0D0F"]} />
         <Particles
           speed={speed}
           aperture={aperture}
@@ -70,13 +70,7 @@ export const GL = ({ hovering }: { hovering: boolean }) => {
           manualTime={manualTime}
           introspect={hovering}
         />
-        <Effects multisamping={0} disableGamma>
-          <shaderPass
-            args={[VignetteShader]}
-            uniforms-darkness-value={vignetteDarkness}
-            uniforms-offset-value={vignetteOffset}
-          />
-        </Effects>
+
       </Canvas>
     </div>
   );

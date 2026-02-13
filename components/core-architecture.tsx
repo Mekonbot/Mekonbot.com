@@ -16,7 +16,7 @@ function ClippedPanel({
   return (
     <div
       className={cn(
-        "relative border border-border bg-[#0a0a0a]/80 backdrop-blur-sm",
+        "relative border border-white/10 bg-[#131936]/90 backdrop-blur-sm text-zinc-100",
         className,
       )}
       style={{
@@ -236,7 +236,7 @@ function StepCard({
       className={cn(
         "flex gap-4 sm:gap-5 p-4 sm:p-5 lg:p-6 rounded-sm border cursor-pointer transition-all duration-400",
         isActive
-          ? "border-primary/30 bg-primary/[0.04] [box-shadow:inset_0_0_30px_0px_rgba(255,199,0,0.03)]"
+          ? "border-primary/30 bg-primary/[0.04] [box-shadow:inset_0_0_30px_0px_rgba(59,130,246,0.03)]"
           : "border-transparent bg-transparent hover:border-border/40",
       )}
       onMouseEnter={onHover}
@@ -274,7 +274,7 @@ function StepCard({
         <h3
           className={cn(
             "font-sentient text-lg transition-colors duration-300",
-            isActive ? "text-foreground" : "text-foreground/60",
+            isActive ? "text-foreground" : "text-foreground/80",
           )}
         >
           {title}
@@ -285,7 +285,7 @@ function StepCard({
             isActive ? "max-h-40 opacity-100 mt-2" : "max-h-0 opacity-0 mt-0",
           )}
         >
-          <p className="font-mono text-xs leading-relaxed text-foreground/50">
+          <p className="font-mono text-xs leading-relaxed text-foreground/75">
             {description}
           </p>
         </div>
@@ -324,19 +324,19 @@ function JsonLineRow({
         className={cn(
           hl?.text,
           !hl &&
-            isStringValue(line.value) &&
-            "text-primary/80",
+          isStringValue(line.value) &&
+          "text-primary/80",
           !hl &&
-            isBoolOrNumber(line.value) &&
-            "text-[#7dd3fc]",
+          isBoolOrNumber(line.value) &&
+          "text-[#7dd3fc]",
           !hl &&
-            isArrayValue(line.value) &&
-            "text-primary/60",
+          isArrayValue(line.value) &&
+          "text-primary/60",
           !hl &&
-            !isStringValue(line.value) &&
-            !isBoolOrNumber(line.value) &&
-            !isArrayValue(line.value) &&
-            "text-foreground/30",
+          !isStringValue(line.value) &&
+          !isBoolOrNumber(line.value) &&
+          !isArrayValue(line.value) &&
+          "text-foreground/30",
         )}
       >
         {line.value}
@@ -390,7 +390,7 @@ export function CoreArchitecture() {
           <h2 className="text-3xl sm:text-4xl lg:text-5xl font-sentient text-balance max-w-[640px] mx-auto">
             The Core <i className="font-light">Architecture.</i>
           </h2>
-          <p className="font-mono text-sm text-foreground/40 mt-6 max-w-[520px] mx-auto text-balance">
+          <p className="font-mono text-sm text-foreground/75 mt-6 max-w-[520px] mx-auto text-balance">
             Four sequential layers of verification, certification, enforcement, and audit.
           </p>
         </div>
@@ -438,7 +438,7 @@ export function CoreArchitecture() {
           >
             <ClippedPanel className="overflow-hidden">
               {/* Title bar */}
-              <div className="flex items-center justify-between px-4 sm:px-5 py-3 sm:py-3.5 border-b border-border/40 bg-[#0d0d0d]">
+              <div className="flex items-center justify-between px-4 sm:px-5 py-3 sm:py-3.5 border-b border-border/40 bg-[#0f142b]">
                 <div className="flex items-center gap-1.5">
                   <span className="size-2.5 rounded-full bg-foreground/15" />
                   <span className="size-2.5 rounded-full bg-foreground/15" />
@@ -479,7 +479,7 @@ export function CoreArchitecture() {
 
               {/* Status bar */}
               <div
-                className="flex items-center gap-2 sm:gap-3 px-4 sm:px-5 py-2.5 sm:py-3 border-t border-border/30 bg-[#080808] transition-opacity duration-200"
+                className="flex items-center gap-2 sm:gap-3 px-4 sm:px-5 py-2.5 sm:py-3 border-t border-border/30 bg-[#0b0e21] transition-opacity duration-200"
                 style={{ opacity: transitioning ? 0 : 1 }}
               >
                 <span

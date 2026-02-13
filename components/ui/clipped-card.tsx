@@ -58,7 +58,7 @@ export function ClippedCard({
     <div
       className={cn(
         "relative group/card transition-all duration-500 ease-out",
-        hoverLift && "hover:-translate-y-1 hover:shadow-[0_8px_40px_rgba(255,199,0,0.04)]",
+        hoverLift && "hover:-translate-y-1 hover:shadow-[0_8px_40px_rgba(59,130,246,0.04)]",
         className,
       )}
       style={{

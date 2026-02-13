@@ -42,7 +42,7 @@ export const MobileMenu = ({ className }: MobileMenuProps) => {
       <Dialog.Portal>
         <div
           data-overlay="true"
-          className="fixed z-30 inset-0 bg-black/70 backdrop-blur-md animate-fade-in"
+          className="fixed z-30 inset-0 bg-background/80 backdrop-blur-md animate-fade-in"
         />
 
         <Dialog.Content

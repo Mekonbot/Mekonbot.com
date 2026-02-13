@@ -48,16 +48,57 @@ export function WhoAreWe() {
                         inView ? "opacity-100" : "opacity-0"
                     )}
                 >
-                    <StoryCard title={<span>The <i className="font-light">New Labor.</i></span>} index={0}>
-                        We are witnessing the dawn of a new species of labor. Humanoid robots are leaving the labs and entering our warehouses, factories, and homes at an unprecedented scale.
+                    <StoryCard title={<span>ACT I — <i className="font-light">A Structural Shift.</i></span>} index={0}>
+                        <div className="space-y-6">
+                            <p className="font-medium text-foreground text-lg">Humanoid robotics is entering its software era.</p>
+                            <p className="text-muted-foreground/90">Capabilities are no longer hardware-defined. They are <span className="text-foreground">programmable skills</span>, deployed instantly across fleets.</p>
+                            <div className="space-y-2">
+                                <p className="text-sm uppercase tracking-wider text-muted-foreground/60">The New Battlefield</p>
+                                <p className="font-medium text-foreground">Not mechanical engineering.<br />But control, certification, and trust at scale.</p>
+                            </div>
+                        </div>
                     </StoryCard>
 
-                    <StoryCard title={<span>The <i className="font-light">Safety Gap.</i></span>} index={1}>
-                        As machines work alongside humans, a critical question emerges: <span className="text-foreground">Who ensures they are safe, compliant, and controlled?</span> The gap between potential and trust is widening.
+                    <StoryCard title={<span>ACT II — <i className="font-light">The Missing Layer.</i></span>} index={1}>
+                        <div className="space-y-5">
+                            <p className="text-muted-foreground/90">Robotic skills are currently deployed without an independent authority. We lack:</p>
+                            <div className="pl-4 border-l-2 border-red-500/20 py-1">
+                                <ul className="space-y-2.5 list-none text-sm font-medium text-muted-foreground/80">
+                                    <li className="flex gap-2"><span className="text-red-400">×</span> No standard for "trusted skills"</li>
+                                    <li className="flex gap-2"><span className="text-red-400">×</span> No unified enforcement model</li>
+                                    <li className="flex gap-2"><span className="text-red-400">×</span> No cross-platform auditability</li>
+                                    <li className="flex gap-2"><span className="text-red-400">×</span> No governance/execution separation</li>
+                                </ul>
+                            </div>
+                            <div className="pt-2">
+                                <p className="text-lg font-sentient text-foreground">The industry is scaling.<br />The <span className="text-red-400">trust layer</span> is not.</p>
+                            </div>
+                        </div>
                     </StoryCard>
 
-                    <StoryCard title={<span>The <i className="font-light">Governance.</i></span>} index={2}>
-                        MekonBot bridges this gap. We build the <strong className="font-normal text-foreground">infrastructure of trust</strong>—the certification, policy, and audit layers that make the machine age possible.
+                    <StoryCard title={<span>ACT III — <i className="font-light">MekonBot.</i></span>} index={2}>
+                        <div className="space-y-5">
+                            <p className="font-medium text-foreground text-lg">The certification infrastructure for the machine age.</p>
+
+                            <div className="bg-primary/5 p-4 rounded-lg border border-primary/10">
+                                <p className="text-sm italic text-primary/90 text-center">
+                                    "We don't build robots.<br />We define their rules of operation."
+                                </p>
+                            </div>
+
+                            <div className="space-y-2">
+                                <p className="text-xs uppercase tracking-wider text-muted-foreground/60">Platform Capabilities</p>
+                                <ul className="grid grid-cols-1 gap-2 text-sm font-medium text-foreground/90">
+                                    <li className="flex items-center gap-2"><span className="size-1.5 rounded-full bg-primary/60" /> Cryptographic Identity</li>
+                                    <li className="flex items-center gap-2"><span className="size-1.5 rounded-full bg-primary/60" /> Policy-Based Execution</li>
+                                    <li className="flex items-center gap-2"><span className="size-1.5 rounded-full bg-primary/60" /> Immutable Audit Trails</li>
+                                </ul>
+                            </div>
+
+                            <div className="pt-3 border-t border-border/40">
+                                <p className="text-xs font-mono text-primary text-center">Product → Standard → Global Initiative</p>
+                            </div>
+                        </div>
                     </StoryCard>
                 </div>
             </div>

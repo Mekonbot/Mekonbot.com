@@ -55,7 +55,7 @@ function ResultBadge({ label, variant }: { label: string; variant: "danger" | "s
   const isDanger = variant === "danger";
   return (
     <div className={cn("inline-flex items-center gap-2 font-mono text-xs uppercase tracking-wider px-3 py-2 rounded-sm border", isDanger ? "border-red-500/30 text-red-400 bg-red-500/[0.06]" : "border-primary/30 text-primary bg-primary/[0.06]")}>
-      <span className={cn("inline-block size-1.5 rounded-full", isDanger ? "bg-red-500 shadow-[0_0_6px_1px] shadow-red-500/50 animate-slow-pulse" : "bg-primary shadow-glow shadow-primary/50 animate-slow-pulse")} />
+      <span className={cn("inline-block size-1.5 rounded-full", isDanger ? "bg-red-500 shadow-[0_0_6px_1px] shadow-red-500/50 animate-slow-pulse" : "bg-primary shadow-[0_0_15px] shadow-primary/50 animate-slow-pulse")} />
       {label}
     </div>
   );
@@ -106,7 +106,7 @@ export function WarehouseScenario() {
 
         <div ref={ref} className="grid grid-cols-1 lg:grid-cols-2 gap-6 lg:gap-8">
           {[{ steps: withoutSteps, variant: "danger" as const, title: "Without MekonBot", badge: "Unmitigated risk" },
-            { steps: withSteps, variant: "safe" as const, title: "With MekonBot", badge: "Governed & documented" }].map((side, sideIdx) => (
+          { steps: withSteps, variant: "safe" as const, title: "With MekonBot", badge: "Governed & documented" }].map((side, sideIdx) => (
             <div
               key={side.title}
               style={{
@@ -118,7 +118,7 @@ export function WarehouseScenario() {
               <ClippedCard accent={side.variant === "danger" ? "danger" : "primary"}>
                 <div className={cn("p-5 sm:p-6 lg:p-10", side.variant === "danger" ? "border-red-500/20" : "border-primary/20")}>
                   <div className="flex items-center gap-3 mb-8">
-                    <span className={cn("inline-block size-2 rounded-full animate-slow-pulse", side.variant === "danger" ? "bg-red-500 shadow-[0_0_8px_2px] shadow-red-500/40" : "bg-primary shadow-glow shadow-primary/50")} />
+                    <span className={cn("inline-block size-2 rounded-full animate-slow-pulse", side.variant === "danger" ? "bg-red-500 shadow-[0_0_8px_2px] shadow-red-500/40" : "bg-primary shadow-[0_0_15px] shadow-primary/50")} />
                     <span className={cn("font-mono text-xs uppercase tracking-widest", side.variant === "danger" ? "text-red-400" : "text-primary")}>{side.title}</span>
                   </div>
                   <div className="flex flex-col">

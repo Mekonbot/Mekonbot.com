@@ -16,7 +16,7 @@ interface LayerProps {
 function LayerBlock({ label, sublabel, variant }: LayerProps) {
   const variantStyles = {
     top: "border-foreground/20 bg-foreground/[0.04]",
-    middle: "border-primary bg-primary/[0.06] [box-shadow:inset_0_0_40px_0px_rgba(255,199,0,0.05)]",
+    middle: "border-primary bg-primary/[0.06] [box-shadow:inset_0_0_40px_0px_rgba(59,130,246,0.05)]",
     bottom: "border-foreground/15 bg-foreground/[0.03]",
   };
 
@@ -24,15 +24,15 @@ function LayerBlock({ label, sublabel, variant }: LayerProps) {
     <div
       className={cn(
         "relative flex items-center justify-between border px-6 py-5 lg:px-8 lg:py-6 rounded-sm transition-all duration-500",
-        "hover:scale-[1.01] hover:shadow-[0_0_20px_rgba(255,199,0,0.02)]",
+        "hover:scale-[1.01] hover:shadow-[0_0_20px_rgba(59,130,246,0.02)]",
         variantStyles[variant]
       )}
     >
       <div>
-        <p className={cn("font-mono text-sm uppercase tracking-wide", variant === "middle" ? "text-primary" : "text-foreground/50")}>
+        <p className={cn("font-mono text-sm uppercase tracking-wide", variant === "middle" ? "text-primary" : "text-foreground/80")}>
           {label}
         </p>
-        <p className={cn("font-mono text-xs mt-1", variant === "middle" ? "text-primary/60" : "text-foreground/30")}>
+        <p className={cn("font-mono text-xs mt-1", variant === "middle" ? "text-primary/75" : "text-foreground/60")}>
           {sublabel}
         </p>
       </div>
@@ -40,7 +40,7 @@ function LayerBlock({ label, sublabel, variant }: LayerProps) {
         <div className="flex items-center gap-2">
           <span className="relative flex size-2">
             <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-primary opacity-40" />
-            <span className="relative inline-flex size-2 rounded-full bg-primary shadow-glow shadow-primary/50" />
+            <span className="relative inline-flex size-2 rounded-full bg-primary shadow-[0_0_15px] shadow-primary/50" />
           </span>
           <span className="font-mono text-xs text-primary/70 uppercase tracking-wider">Active</span>
         </div>
@@ -86,19 +86,19 @@ export function DefiningCategory() {
             }}
           >
             <div className="space-y-6">
-              <p className="font-mono text-sm leading-relaxed text-foreground/50">
+              <p className="font-mono text-sm leading-relaxed text-foreground/80">
                 Identity management defined cloud computing. Security standards defined payments. Governance will define robotics.
               </p>
-              <p className="font-mono text-sm leading-relaxed text-foreground/50">
+              <p className="font-mono text-sm leading-relaxed text-foreground/80">
                 As humanoid platforms open their ecosystems to third-party skills and applications, the industry faces a critical inflection point{"\u2014"}who certifies the software that controls physical machines?
               </p>
-              <p className="font-mono text-sm leading-relaxed text-foreground/50">
+              <p className="font-mono text-sm leading-relaxed text-foreground/80">
                 MekonBot is building the infrastructure layer for certification, control, and audit of robotic skills across hardware platforms. An independent authority that sits between the application layer and the machine{"\u2014"}verifying, enforcing, and logging every action before it executes.
               </p>
             </div>
             <div className="mt-10 flex items-center gap-4">
               <div className="h-px flex-1 bg-border/40" />
-              <span className="font-mono text-xs text-foreground/30 uppercase tracking-widest">Platform-agnostic</span>
+              <span className="font-mono text-xs text-foreground/60 uppercase tracking-widest">Platform-agnostic</span>
               <div className="h-px flex-1 bg-border/40" />
             </div>
           </div>
@@ -124,13 +124,13 @@ export function DefiningCategory() {
             {/* Side annotations (hidden on mobile to prevent overflow) */}
             <div className="hidden lg:flex absolute -right-4 top-1/2 -translate-y-1/2 flex-col items-center gap-1">
               <div className="w-px h-16 bg-gradient-to-b from-transparent via-primary/30 to-transparent" />
-              <span className="font-mono text-[10px] text-primary/50 uppercase tracking-widest [writing-mode:vertical-lr] rotate-180">Certification</span>
+              <span className="font-mono text-[10px] text-primary/70 uppercase tracking-widest [writing-mode:vertical-lr] rotate-180">Certification</span>
               <div className="w-px h-16 bg-gradient-to-b from-transparent via-primary/30 to-transparent" />
             </div>
             <div className="hidden lg:flex absolute -left-4 top-1/2 -translate-y-1/2 flex-col items-center gap-1">
-              <div className="w-px h-16 bg-gradient-to-b from-transparent via-foreground/10 to-transparent" />
-              <span className="font-mono text-[10px] text-foreground/25 uppercase tracking-widest [writing-mode:vertical-lr] rotate-180">Audit Trail</span>
-              <div className="w-px h-16 bg-gradient-to-b from-transparent via-foreground/10 to-transparent" />
+              <div className="w-px h-16 bg-gradient-to-b from-transparent via-foreground/20 to-transparent" />
+              <span className="font-mono text-[10px] text-foreground/50 uppercase tracking-widest [writing-mode:vertical-lr] rotate-180">Audit Trail</span>
+              <div className="w-px h-16 bg-gradient-to-b from-transparent via-foreground/20 to-transparent" />
             </div>
           </div>
         </div>
